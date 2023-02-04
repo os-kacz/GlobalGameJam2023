@@ -33,6 +33,8 @@ namespace Platformer.Mechanics
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
+        public bool canDoubleJump;
+        public bool hasBoots;
 
         bool jump;
         Vector2 move;
@@ -55,14 +57,36 @@ namespace Platformer.Mechanics
         {
             if (controlEnabled)
             {
-                move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
-                    jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
+                if (hasBoots)
+                {
+                    move.x = Input.GetAxis("Horizontal");
+                    if (jumpState == JumpState.Grounded && !Input.GetButtonDown("Jump"))
+                    { canDoubleJump = false; }
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        if (jumpState == JumpState.Grounded || canDoubleJump)
+                        {
+                            jumpState = JumpState.PrepareToJump;
+                            canDoubleJump = !canDoubleJump;
+                        }
+                    }
+                }
+                else {
+                    move.x = Input.GetAxis("Horizontal");
+                    if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                        jumpState = JumpState.PrepareToJump;
+                    else if (Input.GetButtonUp("Jump"))
+                    {
+                        stopJump = true;
+                        Schedule<PlayerStopJump>().player = this;
+                    }
+                }
+
+               /* else if (Input.GetButtonUp("Jump"))
                 {
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
-                }
+                }*/
             }
             else
             {
@@ -85,6 +109,7 @@ namespace Platformer.Mechanics
                 case JumpState.Jumping:
                     if (!IsGrounded)
                     {
+
                         Schedule<PlayerJumped>().player = this;
                         jumpState = JumpState.InFlight;
                     }
@@ -104,11 +129,14 @@ namespace Platformer.Mechanics
 
         protected override void ComputeVelocity()
         {
-            if (jump && IsGrounded)
+            if (jump)
             {
                 velocity.y = jumpTakeOffSpeed * model.jumpModifier;
-                jump = false;
+                 jump = false; 
+               
+                
             }
+
             else if (stopJump)
             {
                 stopJump = false;
