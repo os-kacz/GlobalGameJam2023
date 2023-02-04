@@ -15,14 +15,18 @@ namespace Platformer.Gameplay
     {
         public EnemyController enemy;
         public PlayerController player;
+        public bool hasShield;
+        int shieldHealth = 5;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public override void Execute()
         {
             var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
+            
 
-            if (willHurtEnemy)
+
+            if (willHurtEnemy || hasShield)
             {
                 var enemyHealth = enemy.GetComponent<Health>();
                 if (enemyHealth != null)
@@ -38,11 +42,16 @@ namespace Platformer.Gameplay
                         player.Bounce(7);
                     }
                 }
+
                 else
                 {
                     Schedule<EnemyDeath>().enemy = enemy;
                     player.Bounce(2);
                 }
+                shieldHealth--;
+                if (shieldHealth < 1) 
+                hasShield = false;
+                
             }
             else
             {
