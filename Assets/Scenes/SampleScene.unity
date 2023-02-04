@@ -64451,6 +64451,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BouncyGlowy
       objectReference: {fileID: 0}
+    - target: {fileID: 5928128548278894704, guid: e8ac9fddd495344dd969dab643f1506b,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ac9fddd495344dd969dab643f1506b, type: 3}
 --- !u!1 &1401004236
