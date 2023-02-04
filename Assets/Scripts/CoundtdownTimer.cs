@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using Platformer.Core;
+using Platformer.Mechanics;
 using Platformer.Model;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static Platformer.Core.Simulation;
+using Platformer.Gameplay;
 
 public class CoundtdownTimer : MonoBehaviour
 {
-    public float TimeLeft;
+    public float TimeLeft = 120;
     public bool TimerOn;
 
     public TextMeshProUGUI countdownText;
+    PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
     void Start()
     {
@@ -28,13 +32,14 @@ public class CoundtdownTimer : MonoBehaviour
             }
             else
             {
-                TimeLeft = 0;
-                TimerOn = false;
-                //Application.LoadLevel(Application, loadedlevel);
+                
+                Schedule<PlayerDeath>();
+                TimeLeft = 120;
             }
-            updateTimer(TimeLeft);
         }
+        updateTimer(TimeLeft);
     }
+
 
     void updateTimer(float TimeLeft)
     {
@@ -45,4 +50,5 @@ public class CoundtdownTimer : MonoBehaviour
 
     }
 }
+
 
