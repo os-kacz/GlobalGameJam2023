@@ -1,4 +1,5 @@
 using UnityEngine;
+using Systems.Collection;
 
 namespace Platformer.Mechanics
 {
@@ -11,6 +12,8 @@ namespace Platformer.Mechanics
         /// One end of the patrol path.
         /// </summary>
         public Vector2 startPosition, endPosition;
+
+        public List<Vector2> patrolNodes;
 
         /// <summary>
         /// Create a Mover instance which is used to move an entity along the path at a certain speed.
