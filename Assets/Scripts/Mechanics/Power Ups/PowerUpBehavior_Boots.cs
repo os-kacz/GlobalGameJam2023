@@ -1,3 +1,4 @@
+using Platformer.Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PowerUpBehavior_Boots : MonoBehaviour
     public BoxCollider2D boxCollider;
     public SpriteRenderer sprite;
     private bool isActive = true;
+    public bool has_shoes = false;
 
 
 
@@ -30,6 +32,10 @@ public class PowerUpBehavior_Boots : MonoBehaviour
             audioSource.Play();
             isActive = false;
             collider.enabled = GetComponent<Renderer>().enabled = false;
+            c2d.GetComponent<PlayerController>().ActivateDoubleJump();
+            has_shoes = true;
+
+            //Destroy(gameObject);
         }
     }
     void Update()
