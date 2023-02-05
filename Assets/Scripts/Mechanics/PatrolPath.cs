@@ -1,5 +1,13 @@
 using UnityEngine;
+<<<<<<< Updated upstream
 using System.Collections.Generic;
+=======
+<<<<<<< Updated upstream
+///using Systems.Collection;
+=======
+//using Systems.Collection; - makes an error
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 namespace Platformer.Mechanics
 {
@@ -13,10 +21,14 @@ namespace Platformer.Mechanics
         /// </summary>
         public Vector2 startPosition, endPosition;
 
+<<<<<<< Updated upstream
         public List<Transform> pathnodes;
 
         //move towards pathnodes[0];
         //once arrived at pathnodes[0] go to pathnodes[1];
+=======
+       // public List<Vector2> patrolNodes; - makes an error
+>>>>>>> Stashed changes
 
         /// <summary>
         /// Create a Mover instance which is used to move an entity along the path at a certain speed.
