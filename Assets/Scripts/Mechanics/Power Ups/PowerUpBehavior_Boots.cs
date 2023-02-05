@@ -1,3 +1,4 @@
+using Platformer.Mechanics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,9 @@ public class PowerUpBehavior_Boots : MonoBehaviour
     public BoxCollider2D boxCollider;
     public SpriteRenderer sprite;
     private bool isActive = true;
-    public bool has_shoes;
-   
+    public bool has_shoes = false;
+
+
 
 
 
@@ -35,16 +37,15 @@ public class PowerUpBehavior_Boots : MonoBehaviour
             isActive = false;
             collider.enabled = GetComponent<Renderer>().enabled = false;
             boxCollider.enabled = GetComponent<BoxCollider2D>().enabled = false;
-            
-
-
+            c2d.GetComponent<PlayerController>().ActivateDoubleJump();
+            has_shoes = true;
         }
     }
     void Update()
     {
         if (isActive)
         {
-          //  Debug.Log(has_shoes);
+          Debug.Log(has_shoes);
         }
         else
         {

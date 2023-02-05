@@ -53,6 +53,8 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
         }
 
+       
+
         protected override void Update()
         {
             if (controlEnabled)
@@ -155,6 +157,12 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+        }
+
+        public void ActivateDoubleJump()
+        {
+            Debug.Log("BOOTS COLLECTED");
+            hasBoots = true;
         }
 
         public enum JumpState
