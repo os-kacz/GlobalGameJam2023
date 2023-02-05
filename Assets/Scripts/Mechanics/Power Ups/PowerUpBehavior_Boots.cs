@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpBehavior : MonoBehaviour
+public class PowerUpBehavior_Boots : MonoBehaviour
 {
     public AudioSource audioSource;
     public BoxCollider2D boxCollider;
