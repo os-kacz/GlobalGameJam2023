@@ -14,6 +14,8 @@ public class PowerUpBehavior_Boots : MonoBehaviour
 
 
 
+
+
     public BoxCollider2D collider;
 
 
@@ -29,20 +31,21 @@ public class PowerUpBehavior_Boots : MonoBehaviour
         //Destroy the coin if Object tagged Player comes in contact with it
         if (c2d.CompareTag("Player"))
         {
+            c2d.GetComponent<PlayerController>().ActivateDoubleJump();
+            has_shoes = true;
             audioSource.Play();
             isActive = false;
             collider.enabled = GetComponent<Renderer>().enabled = false;
+            boxCollider.enabled = GetComponent<BoxCollider2D>().enabled = false;
             c2d.GetComponent<PlayerController>().ActivateDoubleJump();
             has_shoes = true;
-
-            //Destroy(gameObject);
         }
     }
     void Update()
     {
         if (isActive)
         {
-
+          Debug.Log(has_shoes);
         }
         else
         {
