@@ -1,5 +1,5 @@
 using UnityEngine;
-///using Systems.Collection;
+using System.Collections.Generic;
 
 namespace Platformer.Mechanics
 {
@@ -13,7 +13,10 @@ namespace Platformer.Mechanics
         /// </summary>
         public Vector2 startPosition, endPosition;
 
-        public List<Vector2> patrolNodes;
+        public List<Transform> pathnodes;
+
+        //move towards pathnodes[0];
+        //once arrived at pathnodes[0] go to pathnodes[1];
 
         /// <summary>
         /// Create a Mover instance which is used to move an entity along the path at a certain speed.
